@@ -2,6 +2,8 @@ module.exports = () => {
   // ...
 };
 
-let path = require('path');
-console.log(path.basename(_filename));
-/* Función para ver si el path es abasoluto */
+/* Función para ver si el path existe */
+
+/* Función para ver si el path es absoluto */
+
+/* Función para convertir el path en absoluto */
