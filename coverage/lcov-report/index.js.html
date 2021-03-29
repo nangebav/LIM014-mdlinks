@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.24% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/17</span>
+                <span class='fraction'>19/19</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.43% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/7</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -96,7 +96,8 @@
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
 <a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -115,17 +116,19 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,8 +137,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// module.exports = () =&gt; { fileExists, validateAbsolute,validateFile, validateDirectory,
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// module.exports = () =&gt; { pathExists, validateAbsolute,validateFile, validateDirectory,
 // pathExtname, validateMd, readFiles};
 &nbsp;
 // const saludito = 'HELLO WORLD'
@@ -145,34 +147,35 @@ const fs = require('fs'); // fs es el módulo del sistema de archivos Node.js le
 const path = require('path'); // El path módulo proporciona utilidades para trabajar con rutas de archivos y directorios.
 &nbsp;
 // Validar si la ruta existe
-const fileExists = (file) =&gt; (fs.existsSync(file));
+const pathExists = (file) =&gt; fs.existsSync(file);
 &nbsp;
 // Validar ruta si esabsoluta, de lo contrario convertirla en absoluta
 const validateAbsolute = (file) =&gt; ((path.isAbsolute(file)) ? file : path.resolve(file));
 &nbsp;
+// Verificar si es un directorio.
+const validateDirectory = (file) =&gt; fs.statSync(file).isDirectory();
+&nbsp;
 // Verificar si es un archivo.
 const validateFile = (file) =&gt; fs.statSync(file).isFile();
 &nbsp;
-// Verificar si es un directorio.
-const validateDirectory = <span class="fstat-no" title="function not covered" >(f</span>ile) =&gt; <span class="cstat-no" title="statement not covered" >fs.statSync(file).isDirectory();</span>
+// obtener extensión de archivo
+const fileExtension = (file) =&gt; path.extname(file);
+const a = path.extname('index.html');
+const b = path.extname('uno.md');
+// returns ".html" y ".md"
+console.log(a);
+console.log(b);
 &nbsp;
-// Obtener la extención del archivo.
-const pathExtname = (file) =&gt; path.extname(file);
-&nbsp;
-// Verificar si es un archivo .md
+// Validar si archivo es .md
 const validateMd = (file) =&gt; file === '.md';
 &nbsp;
-// Leer archivo.
-const readFiles = <span class="fstat-no" title="function not covered" >(f</span>ile) =&gt; <span class="cstat-no" title="statement not covered" >fs.readFileSync(file, 'utf-8');</span>
-&nbsp;
 module.exports = {
-  fileExists,
+  pathExists,
+  validateDirectory,
   validateAbsolute,
   validateFile,
-  validateDirectory,
-  pathExtname,
+  fileExtension,
   validateMd,
-  readFiles,
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -181,7 +184,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Mar 28 2021 18:59:52 GMT-0500 (hora estándar de Perú)
+                at Mon Mar 29 2021 08:51:36 GMT-0500 (hora estándar de Perú)
             </div>
         </div>
         <script src="prettify.js"></script>

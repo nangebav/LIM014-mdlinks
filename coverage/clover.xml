@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1616975992624" clover="3.2.0">
-  <project timestamp="1616975992625" name="All files">
-    <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="5" elements="19" coveredelements="17" complexity="0" loc="10" ncloc="10" packages="1" files="1" classes="1"/>
+<coverage generated="1617025896927" clover="3.2.0">
+  <project timestamp="1617025896927" name="All files">
+    <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="6" elements="21" coveredelements="21" complexity="0" loc="13" ncloc="13" packages="1" files="1" classes="1"/>
     <file name="index.js" path="/home/laboratoria/LIM014-mdlinks/index.js">
-      <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="5"/>
+      <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="6"/>
       <line num="7" count="1" type="stmt"/>
       <line num="8" count="1" type="stmt"/>
       <line num="11" count="2" type="stmt"/>
       <line num="14" count="2" type="cond" truecount="2" falsecount="0"/>
       <line num="17" count="2" type="stmt"/>
-      <line num="20" count="1" type="stmt"/>
-      <line num="23" count="3" type="stmt"/>
-      <line num="26" count="2" type="stmt"/>
-      <line num="29" count="1" type="stmt"/>
-      <line num="31" count="1" type="stmt"/>
+      <line num="20" count="2" type="stmt"/>
+      <line num="23" count="4" type="stmt"/>
+      <line num="24" count="1" type="stmt"/>
+      <line num="25" count="1" type="stmt"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="28" count="1" type="stmt"/>
+      <line num="31" count="2" type="stmt"/>
+      <line num="33" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>
