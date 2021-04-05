@@ -2,10 +2,10 @@
 const {
   pathExists,
   validateAbsolute,
-  validateFile,
   validateDirectory,
-  fileExtension,
-  validateMd,
+  readDirectory,
+  validateFile,
+  fileMd,
 } = require('../index.js');
 
 // Validar la ruta
@@ -52,6 +52,22 @@ describe('validateDirectory', () => {
   });
 });
 
+// Almacena archivos de un directorio en un array
+describe('readDirectory', () => {
+  it('debería ser una función', () => {
+    expect(typeof readDirectory).toBe('function');
+  });
+  const a = ['prueba_mdlinks_1.md'];
+  const b = ['1.md', '2.md'];
+  it('debería mostrame los archivos.md', () => {
+    expect(readDirectory('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test')).toEqual(a);
+  });
+
+  it('debería mostrame los archivos.md', () => {
+    expect(readDirectory('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2')).toEqual(b);
+  });
+});
+
 // Verificar si es un archivo.
 describe('validateFile', () => {
   it('debería ser una función', () => {
@@ -67,31 +83,17 @@ describe('validateFile', () => {
   });
 });
 
-// Pedir la extención del archivo
-describe('fileExtension', () => {
-  it('debería ser una función', () => {
-    expect(typeof fileExtension).toBe('function');
-  });
-
-  it('debería retornar .js', () => {
-    expect(fileExtension('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/no_mdlink.js')).toBe('.js');
-  });
-
-  it('debería retornar .md', () => {
-    expect(fileExtension('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/2.md')).toBe('.md');
-  });
-});
 // Validar si archivo es .md
-describe('validateMd', () => {
+describe('fileMd', () => {
   it('debería ser una función', () => {
-    expect(typeof validateMd).toBe('function');
+    expect(typeof fileMd).toBe('function');
   });
 
   it('debería retornar false', () => {
-    expect(fileExtension(validateMd('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/no_mdlink.js'))).toBe(false);
+    expect(fileMd('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/no_mdlink.js')).toBe(false);
   });
 
   it('debería retornar true', () => {
-    expect(fileExtension(validateMd('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/2.md'))).toBe(true);
+    expect(fileMd('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/2.md')).toBe(true);
   });
 });

@@ -18,9 +18,11 @@
 
 ### Diagrama de flujo API
 
+![Copia de Diagrama en blanco](https://user-images.githubusercontent.com/77282012/112901824-e114aa00-90aa-11eb-85f0-4748f8d01e69.jpeg)
+
 ### Diagrama de flujo CLI
 
-![md-links](https://user-images.githubusercontent.com/110297/42118443-b7a5f1f0-7bc8-11e8-96ad-9cc5593715a6.jpg)
+![Copia de Diagrama eAPI](https://user-images.githubusercontent.com/77282012/112901887-f38ee380-90aa-11eb-90b6-d0a6661ad6b8.jpeg)
 
 ## 2. Resumen del proyecto
 
