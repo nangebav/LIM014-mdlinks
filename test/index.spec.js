@@ -6,6 +6,8 @@ const {
   readDirectory,
   validateFile,
   fileMd,
+  arrayMd,
+  links,
 } = require('../index.js');
 
 // Validar la ruta
@@ -57,14 +59,9 @@ describe('readDirectory', () => {
   it('debería ser una función', () => {
     expect(typeof readDirectory).toBe('function');
   });
-  const a = ['prueba_mdlinks_1.md'];
-  const b = ['1.md', '2.md'];
-  it('debería mostrame los archivos.md', () => {
-    expect(readDirectory('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test')).toEqual(a);
-  });
-
-  it('debería mostrame los archivos.md', () => {
-    expect(readDirectory('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2')).toEqual(b);
+  const a = ['1.md', '2.md', 'directorio dentro de otro directorio', 'no_mdlink.js', 'no_mdlinks_2.html'];
+  it('debería mostrame los archivos del directorio', () => {
+    expect(readDirectory('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2')).toEqual(a);
   });
 });
 
@@ -95,5 +92,59 @@ describe('fileMd', () => {
 
   it('debería retornar true', () => {
     expect(fileMd('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/2.md')).toBe(true);
+  });
+});
+
+// Almacena archivos .md de un directorio en un array
+describe('arrayMd', () => {
+  it('debería ser una función', () => {
+    expect(typeof arrayMd).toBe('function');
+  });
+  const a = ['/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/directorio dentro de otro directorio/3.md'];
+  const b = [
+    '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_1.md',
+    '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+    '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/2.md',
+    '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/directorio dentro de otro directorio/3.md',
+  ];
+  it('debería mostrame solo los archivos md del directorio', () => {
+    expect(arrayMd('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/directorio dentro de otro directorio')).toEqual(a);
+  });
+  it('debería mostrame solo los archivos md del directorio que dentro contiene otros directorios', () => {
+    expect(arrayMd('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test')).toEqual(b);
+  });
+});
+
+// Extrae los links de un archivo md y regresará los valores href, text y file en un objeto de array
+
+describe('links', () => {
+  it('debería ser una función', () => {
+    expect(typeof links).toBe('function');
+  });
+  const a = ['/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md'];
+  const aLinks = [
+    {
+      href: 'https://nodejs.org/es/about/',
+      text: '02.1.1 Acerca de Node.js - Documentación oficial',
+      file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+    },
+    {
+      href: 'https://nodejs.org/api/fs.html',
+      text: '02.1.2 Node.js file system - Documentación oficial',
+      file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+    },
+    {
+      href: 'https://www.w3schools.com/nodejs_/nodejs_intr',
+      text: '02.1.3 Node.js Introduction III',
+      file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+    },
+    {
+      href: 'https://www.genbeta/web_',
+      text: '02.1.4 Genbeta Web site',
+      file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+    },
+  ];
+  it('debería mostrame los valores de todos los links que estan en el archivo md', () => {
+    expect(links(a)).toEqual(aLinks);
   });
 });

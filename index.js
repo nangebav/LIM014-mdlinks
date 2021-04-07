@@ -26,25 +26,54 @@ const readFile = (route) => fs.readFileSync(route, 'utf-8');
 // obtener extensión de archivo, validar si archivo es .md
 const fileMd = (route) => path.extname(route) === '.md';
 
-// Leer directorio y almacenar archivos en un array
-const readDirectory = (route) => {
-  const files = fs.readdirSync(route);
-  let fileArray = [];
+// Leer Directorio
+const readDirectory = (route) => fs.readdirSync(route);
+
+// Leer directorio y almacenar archivos md en un array
+const arrayMd = (route, filesDirectorio) => {
+  const files = readDirectory(route);
+  // console.log(files);
+  let arraysOfFiles = filesDirectorio || [];
   files.forEach((file) => {
-    // validar si es archivo md
-    if (validateDirectory(file) === true) {
-      fileArray = readDirectory(file, fileArray);
-    } else {
-      const mdValidate = fileMd(file);
-      if (mdValidate === true) {
-        fileArray.push(file);
-      }
+    const nextPath = path.join(route, file);
+    // validar si es directorio:
+    if (validateDirectory(nextPath) === true) {
+      arraysOfFiles = arrayMd(nextPath, arraysOfFiles);
+    } else if (fileMd(nextPath) === true) {
+      arraysOfFiles.push(nextPath);
     }
   });
-  return fileArray;
+  return arraysOfFiles;
 };
-// const a = readDirectory('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test');
-// console.log(a);
+
+// const linkin = new RegExp(/[^!]\[.+?\]\(.+?\)/g);
+
+// Leer archivos md y obtener sus links
+const links = (mdArray) => {
+  let arrayLinksValue = [];
+  const mdLinks = new RegExp(/(https?):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-.,@?^=%&amp;:/~+#]*[\w\-@?^=%&amp;/~+#])/mg);
+  const text = new RegExp(/\[(.*?)\]/g);
+  const linkText = new RegExp(/[^!]\[.+?\]\(.+?\)/mg);
+  mdArray.forEach((content) => {
+    const readMd = readFile(content);
+    const arrayLink = readMd.match(linkText);
+    arrayLink.forEach((element) => {
+      const linkValues = {
+        href: element.match(mdLinks).toString(),
+        text: element.match(text).toString().slice(1, -1),
+        file: content.toString(),
+      };
+      arrayLinksValue.push(linkValues);
+    });
+  }); return arrayLinksValue;
+};
+
+// const a = [
+//  '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_1.md',
+// ];
+// const b = [
+//  '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+// ];
 
 module.exports = {
   pathExists,
@@ -54,4 +83,6 @@ module.exports = {
   validateFile,
   fileMd,
   readFile,
+  arrayMd,
+  links,
 };

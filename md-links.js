@@ -2,11 +2,12 @@
 const {
   pathExists,
   validateAbsolute,
-  validateFile,
   validateDirectory,
-  readDirectory,
-  fileExtension,
-  validateMd,
+  validateFile,
+  fileMd,
+  readFile,
+  arrayMd,
+  links,
 } = require('./index.js');
 
 // Función mdLinks:
@@ -16,16 +17,19 @@ const mdLinks = (pathFile) => {
     console.log('La ruta existe');
     // Verificar si es absoluta - Convertir en absoluta.
     const absolutePath = validateAbsolute(pathFile);
+    console.log('Es una ruta absoluta');
     // Verificar si es un directorio o un archivo
     if (validateDirectory(absolutePath) === true) {
       console.log('Es un directorio');
-      // Recorrer directorio y ver archivos
-      console.log(readDirectory(absolutePath));
+      // Recorrer directorio y xtraer archivos md
+      const directoryFile = arrayMd(absolutePath);
+      // Extraer links
+      console.log(links(directoryFile));
     } else if (validateFile(absolutePath) === true) {
       console.log('Es un archivo');
-      const extension = fileExtension(absolutePath);
-      if (validateMd(extension) === true) {
+      if (fileMd(absolutePath) === true) {
         console.log('Si es un archivo marckdown (.md)');
+        console.log(readFile(absolutePath));
       } else {
         console.log('No es un archivo marckdown (.md)');
       }
@@ -35,7 +39,11 @@ const mdLinks = (pathFile) => {
   }
 };
 
-// const b = mdLinks('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_1.md');
+module.exports = {
+  mdLinks,
+};
+
+const b = mdLinks('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/');
 // const b = mdLinks('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2');
 // const b = mdLinks('/home/laboratoria/LIM013-mdlinks/links_de_prueba_test/prueba_mdlinks_1.md');
-// console.log(b);
+console.log(b);
