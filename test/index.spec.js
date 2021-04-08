@@ -122,7 +122,7 @@ describe('links', () => {
     expect(typeof links).toBe('function');
   });
   const a = ['/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md'];
-  const aLinks = [
+  const abLinks = [
     {
       href: 'https://nodejs.org/es/about/',
       text: '02.1.1 Acerca de Node.js - Documentación oficial',
@@ -143,8 +143,20 @@ describe('links', () => {
       text: '02.1.4 Genbeta Web site',
       file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
     },
+    {
+      href: 'https://www.genbeta/web_',
+      text: '02.1.4 Genbeta Web site',
+      file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+    },
+  ];
+  const b = [
+    '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+    '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/directorio dentro de otro directorio/3.md',
   ];
   it('debería mostrame los valores de todos los links que estan en el archivo md', () => {
-    expect(links(a)).toEqual(aLinks);
+    expect(links(a)).toEqual(abLinks);
+  });
+  it('debería mostrame solo los valores de todos los links que estan en el archivo md', () => {
+    expect(links(b)).toEqual(abLinks);
   });
 });

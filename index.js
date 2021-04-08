@@ -53,27 +53,28 @@ const links = (mdArray) => {
   let arrayLinksValue = [];
   const mdLinks = new RegExp(/(https?):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-.,@?^=%&amp;:/~+#]*[\w\-@?^=%&amp;/~+#])/mg);
   const text = new RegExp(/\[(.*?)\]/g);
-  const linkText = new RegExp(/[^!]\[.+?\]\(.+?\)/mg);
+  const linkText = new RegExp(/\[.+\]\(.+?\)/mg);
+  const SpecialCharacters = /[^a-zA-ZÁ-Ź-ÿ\u00f1\u00d1 0-9.]+/g;
   mdArray.forEach((content) => {
     const readMd = readFile(content);
     const arrayLink = readMd.match(linkText);
-    arrayLink.forEach((element) => {
-      const linkValues = {
-        href: element.match(mdLinks).toString(),
-        text: element.match(text).toString().slice(1, -1),
-        file: content.toString(),
-      };
-      arrayLinksValue.push(linkValues);
-    });
+    if (arrayLink !== null) {
+      arrayLink.forEach((element) => {
+        const arrayLinks = element.match(mdLinks);
+        arrayLinks.forEach((link) => {
+          const linkValues = {
+            href: link,
+            text: element.match(text).toString().slice(1, -1).replace(SpecialCharacters, ''),
+            file: content.toString(),
+          };
+          arrayLinksValue.push(linkValues);
+        });
+      });
+    }
   }); return arrayLinksValue;
 };
 
-// const a = [
-//  '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_1.md',
-// ];
-// const b = [
-//  '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-// ];
+// Función para retornar un array validate
 
 module.exports = {
   pathExists,

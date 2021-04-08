@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>44/44</span>
+                <span class='fraction'>45/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>37/37</span>
+                <span class='fraction'>38/38</span>
             </div>
         
             
@@ -149,8 +149,7 @@
 <a name='L90'></a><a href='#L90'>90</a>
 <a name='L91'></a><a href='#L91'>91</a>
 <a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L93'></a><a href='#L93'>93</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -173,7 +172,7 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
@@ -207,30 +206,29 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -298,32 +296,31 @@ const links = (mdArray) =&gt; {
   let arrayLinksValue = [];
   const mdLinks = new RegExp(/(https?):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-.,@?^=%&amp;amp;:/~+#]*[\w\-@?^=%&amp;amp;/~+#])/mg);
   const text = new RegExp(/\[(.*?)\]/g);
-  const linkText = new RegExp(/[^!]\[.+?\]\(.+?\)/mg);
+  const linkText = new RegExp(/\[.+\]\(.+?\)/mg);
+  const SpecialCharacters = /[^a-zA-ZÁ-Ź-ÿ\u00f1\u00d1 0-9.]+/g;
   mdArray.forEach((content) =&gt; {
     const readMd = readFile(content);
     const arrayLink = readMd.match(linkText);
-    console.log(arrayLink);
-    arrayLink.forEach((element) =&gt; {
-      const linkValues = {
-        href: element.match(mdLinks).toString(),
-        text: element.match(text).toString().slice(1, -1),
-        file: mdArray.toString(),
-      };
-      arrayLinksValue.push(linkValues);
-    });
+    if (arrayLink !== null) {
+      arrayLink.forEach((element) =&gt; {
+        const arrayLinks = element.match(mdLinks);
+        arrayLinks.forEach((link) =&gt; {
+          const linkValues = {
+            href: link,
+            text: element.match(text).toString().slice(1, -1).replace(SpecialCharacters, ''),
+            file: content.toString(),
+          };
+          arrayLinksValue.push(linkValues);
+        });
+      });
+    }
   }); return arrayLinksValue;
 };
+const a = ['/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md'];
 &nbsp;
-const a = [
-  '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_1.md',
-];
-const b = [
-  '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-];
-const c = [
-  '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/directorio dentro de otro directorio/3.md',
-];
-console.log(links(b));
+console.log(links(a));
+&nbsp;
+// Función para retornar un array validate
 &nbsp;
 module.exports = {
   pathExists,
@@ -343,7 +340,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Apr 07 2021 09:24:27 GMT-0500 (hora estándar de Perú)
+                at Thu Apr 08 2021 16:13:59 GMT-0500 (hora estándar de Perú)
             </div>
         </div>
         <script src="prettify.js"></script>
