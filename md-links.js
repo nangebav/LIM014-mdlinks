@@ -5,13 +5,16 @@ const {
   validateDirectory,
   validateFile,
   fileMd,
-  readFile,
   arrayMd,
   links,
 } = require('./index.js');
 
+const {
+  optionValidate,
+} = require('./option_validate.js');
+
 // Función mdLinks:
-const mdLinks = (pathFile) => {
+const mdLinks = (pathFile, option) => {
   // Verificar si existe el path.
   if (pathExists(pathFile) === true) {
     console.log('La ruta existe');
@@ -21,15 +24,36 @@ const mdLinks = (pathFile) => {
     // Verificar si es un directorio o un archivo
     if (validateDirectory(absolutePath) === true) {
       console.log('Es un directorio');
-      // Recorrer directorio y xtraer archivos md
-      const directoryFile = arrayMd(absolutePath);
-      // Extraer links
-      console.log(links(directoryFile));
+      // Recorrer directorio y extraer archivos md y extraer sus links
+      const directoryLinks = links(arrayMd(absolutePath));
+      console.log(directoryLinks.length > 0 ? 'Hay Links' : 'no hay links');
+      // ¿Insertó option?
+      if (option) {
+        if (option.validate === true) {
+          console.log(optionValidate(directoryLinks));
+        } else {
+          console.log(directoryLinks);
+        }
+      } else {
+        console.log(directoryLinks);
+      }
     } else if (validateFile(absolutePath) === true) {
       console.log('Es un archivo');
       if (fileMd(absolutePath) === true) {
         console.log('Si es un archivo marckdown (.md)');
-        console.log(readFile(absolutePath));
+        const mdArchivo = [absolutePath];
+        const fileLinks = links(mdArchivo);
+        console.log(fileLinks.length > 0 ? 'Hay Links' : 'no hay links');
+        // ¿Insertó option?
+        if (option) {
+          if (option.validate === true) {
+            console.log(optionValidate(fileLinks));
+          } else {
+            console.log(fileLinks);
+          }
+        } else {
+          console.log(fileLinks);
+        }
       } else {
         console.log('No es un archivo marckdown (.md)');
       }
@@ -43,7 +67,9 @@ module.exports = {
   mdLinks,
 };
 
-const b = mdLinks('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/');
+const b = mdLinks('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/2.md');
 // const b = mdLinks('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2');
 // const b = mdLinks('/home/laboratoria/LIM013-mdlinks/links_de_prueba_test/prueba_mdlinks_1.md');
-console.log(b);
+// console.log(b);
+
+console.log(mdLinks(b, { validate: true }));

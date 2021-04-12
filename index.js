@@ -1,12 +1,9 @@
-// module.exports = () => { pathExists, validateAbsolute,validateFile, validateDirectory,
-// pathExtname, validateMd, readFiles};
-
-// const saludito = 'HELLO WORLD'
-// console.log(saludito)
-
-const fs = require('fs'); // fs es el módulo del sistema de archivos Node.js le permite trabajar con el sistema de archivos en su computadora.
-const path = require('path'); // El path módulo proporciona utilidades para trabajar con rutas de archivos y directorios.
-// const { fileURLToPath } = require('url');
+/* eslint-disable max-len */
+// Módulo del sistema de archivos Node.js le permite trabajar con el sistema de archivos en su computadora.
+const fs = require('fs');
+// El path módulo proporciona utilidades para trabajar con rutas de archivos y directorios.
+const path = require('path');
+// modulo para usar fetch en nodejs
 
 // Validar si la ruta existe
 const pathExists = (route) => fs.existsSync(route);
@@ -51,10 +48,12 @@ const arrayMd = (route, filesDirectorio) => {
 // Leer archivos md y obtener sus links
 const links = (mdArray) => {
   let arrayLinksValue = [];
+  // Expresiones regulares
   const mdLinks = new RegExp(/(https?):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-.,@?^=%&amp;:/~+#]*[\w\-@?^=%&amp;/~+#])/mg);
   const text = new RegExp(/\[(.*?)\]/g);
-  const linkText = new RegExp(/\[.+\]\(.+?\)/mg);
-  const SpecialCharacters = /[^a-zA-ZÁ-Ź-ÿ\u00f1\u00d1 0-9.]+/g;
+  const linkText = new RegExp(/(\[.+\])?\((https?):\/\/.+?\)/mg);
+  const special = /[^a-zA-ZÁ-Ź-ÿ\u00f1\u00d1 0-9.]+/g;
+  // Lectura de array de md's
   mdArray.forEach((content) => {
     const readMd = readFile(content);
     const arrayLink = readMd.match(linkText);
@@ -64,7 +63,7 @@ const links = (mdArray) => {
         arrayLinks.forEach((link) => {
           const linkValues = {
             href: link,
-            text: element.match(text).toString().slice(1, -1).replace(SpecialCharacters, ''),
+            text: element.match(text) ? element.match(text).toString().slice(1, -1).replace(special, '') : 'Not defined',
             file: content.toString(),
           };
           arrayLinksValue.push(linkValues);
