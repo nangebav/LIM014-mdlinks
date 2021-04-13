@@ -13,14 +13,12 @@ const optionValidate = (arr) => arr.map((obj) => axios.get(obj.href)
     href: obj.href,
     text: obj.text,
     file: obj.file,
-    status: res.status ? res.status : 'Not defined',
+    status: res.status ? res.status : 404,
     message: 'FAIL',
   })));
 
-// const b = links(a);
-
 // Promise.all(optionValidate(b)).then((values) => {
-//  console.log(values); // [3, 1337, "foo"]
+// console.log(values);
 // });
 
 module.exports = {

@@ -44,10 +44,9 @@ const arrayMd = (route, filesDirectorio) => {
 };
 
 // const linkin = new RegExp(/[^!]\[.+?\]\(.+?\)/g);
-
 // Leer archivos md y obtener sus links
 const links = (mdArray) => {
-  let arrayLinksValue = [];
+  const arrayLinksValue = [];
   // Expresiones regulares
   const mdLinks = new RegExp(/(https?):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-.,@?^=%&amp;:/~+#]*[\w\-@?^=%&amp;/~+#])/mg);
   const text = new RegExp(/\[(.*?)\]/g);
@@ -74,7 +73,6 @@ const links = (mdArray) => {
 };
 
 // Función para retornar un array validate
-
 module.exports = {
   pathExists,
   validateAbsolute,

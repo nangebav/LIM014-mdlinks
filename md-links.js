@@ -30,7 +30,9 @@ const mdLinks = (pathFile, option) => {
       // ¿Insertó option?
       if (option) {
         if (option.validate === true) {
-          console.log(optionValidate(directoryLinks));
+          Promise.all(optionValidate(directoryLinks)).then((values) => {
+            console.log(values);
+          });
         } else {
           console.log(directoryLinks);
         }
@@ -39,6 +41,7 @@ const mdLinks = (pathFile, option) => {
       }
     } else if (validateFile(absolutePath) === true) {
       console.log('Es un archivo');
+      // Preguntar si es un archivo md
       if (fileMd(absolutePath) === true) {
         console.log('Si es un archivo marckdown (.md)');
         const mdArchivo = [absolutePath];
@@ -47,7 +50,9 @@ const mdLinks = (pathFile, option) => {
         // ¿Insertó option?
         if (option) {
           if (option.validate === true) {
-            console.log(optionValidate(fileLinks));
+            Promise.all(optionValidate(fileLinks)).then((values) => {
+              console.log(values);
+            });
           } else {
             console.log(fileLinks);
           }
@@ -67,9 +72,7 @@ module.exports = {
   mdLinks,
 };
 
-const b = mdLinks('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/2.md');
+mdLinks('links_de_prueba_test/prueba_mdlinks_2/1.md');
 // const b = mdLinks('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2');
 // const b = mdLinks('/home/laboratoria/LIM013-mdlinks/links_de_prueba_test/prueba_mdlinks_1.md');
 // console.log(b);
-
-console.log(mdLinks(b, { validate: true }));
