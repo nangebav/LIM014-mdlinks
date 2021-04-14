@@ -1,1 +1,2 @@
-const mdlinks = require('./md-links.js');
+const stats = '';
+const validate = '';

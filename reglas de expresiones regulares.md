@@ -1,4 +1,6 @@
 Coincidencias Basicas
+* (https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions)
+
 .       - Cualquier Caracter, excepto nueva linea
 \d      - Cualquier Digitos (0-9)
 \D      - No es un Digito (0-9)

@@ -30,7 +30,7 @@ const mdLinks = (pathFile, option) => {
       // ¿Insertó option?
       if (option) {
         if (option.validate === true) {
-          Promise.all(optionValidate(directoryLinks)).then((values) => {
+          optionValidate(directoryLinks).then((values) => {
             console.log(values);
           });
         } else {
@@ -50,7 +50,7 @@ const mdLinks = (pathFile, option) => {
         // ¿Insertó option?
         if (option) {
           if (option.validate === true) {
-            Promise.all(optionValidate(fileLinks)).then((values) => {
+            optionValidate(fileLinks).then((values) => {
               console.log(values);
             });
           } else {
@@ -72,7 +72,7 @@ module.exports = {
   mdLinks,
 };
 
-mdLinks('links_de_prueba_test/prueba_mdlinks_2/1.md');
+mdLinks('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2', { validate: false });
 // const b = mdLinks('/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2');
 // const b = mdLinks('/home/laboratoria/LIM013-mdlinks/links_de_prueba_test/prueba_mdlinks_1.md');
 // console.log(b);

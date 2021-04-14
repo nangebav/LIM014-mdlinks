@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1618343843270" clover="3.2.0">
-  <project timestamp="1618343843271" name="All files">
-    <metrics statements="41" coveredstatements="39" conditionals="14" coveredconditionals="11" methods="17" coveredmethods="15" elements="72" coveredelements="65" complexity="0" loc="41" ncloc="41" packages="1" files="2" classes="2"/>
+<coverage generated="1618419915201" clover="3.2.0">
+  <project timestamp="1618419915203" name="All files">
+    <metrics statements="43" coveredstatements="41" conditionals="14" coveredconditionals="12" methods="17" coveredmethods="15" elements="74" coveredelements="68" complexity="0" loc="43" ncloc="43" packages="1" files="2" classes="2"/>
     <file name="index.js" path="/home/laboratoria/LIM014-mdlinks/index.js">
-      <metrics statements="36" coveredstatements="36" conditionals="12" coveredconditionals="11" methods="13" coveredmethods="13"/>
+      <metrics statements="36" coveredstatements="36" conditionals="12" coveredconditionals="12" methods="13" coveredmethods="13"/>
       <line num="3" count="1" type="stmt"/>
       <line num="5" count="1" type="stmt"/>
       <line num="9" count="2" type="stmt"/>
       <line num="12" count="2" type="cond" truecount="2" falsecount="0"/>
       <line num="15" count="11" type="stmt"/>
       <line num="18" count="2" type="stmt"/>
-      <line num="21" count="3" type="stmt"/>
+      <line num="21" count="4" type="stmt"/>
       <line num="24" count="9" type="stmt"/>
       <line num="27" count="5" type="stmt"/>
       <line num="30" count="1" type="stmt"/>
@@ -24,30 +24,32 @@
       <line num="40" count="5" type="stmt"/>
       <line num="43" count="4" type="stmt"/>
       <line num="48" count="1" type="stmt"/>
-      <line num="49" count="2" type="stmt"/>
-      <line num="51" count="2" type="stmt"/>
-      <line num="52" count="2" type="stmt"/>
-      <line num="53" count="2" type="stmt"/>
-      <line num="54" count="2" type="stmt"/>
-      <line num="56" count="2" type="stmt"/>
-      <line num="57" count="3" type="stmt"/>
-      <line num="58" count="3" type="stmt"/>
-      <line num="59" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="60" count="2" type="stmt"/>
-      <line num="61" count="8" type="stmt"/>
-      <line num="62" count="8" type="stmt"/>
-      <line num="63" count="8" type="stmt"/>
-      <line num="68" count="8" type="stmt"/>
-      <line num="72" count="2" type="stmt"/>
+      <line num="49" count="3" type="stmt"/>
+      <line num="51" count="3" type="stmt"/>
+      <line num="52" count="3" type="stmt"/>
+      <line num="53" count="3" type="stmt"/>
+      <line num="54" count="3" type="stmt"/>
+      <line num="56" count="3" type="stmt"/>
+      <line num="57" count="4" type="stmt"/>
+      <line num="58" count="4" type="stmt"/>
+      <line num="59" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="60" count="3" type="stmt"/>
+      <line num="61" count="9" type="stmt"/>
+      <line num="62" count="9" type="stmt"/>
+      <line num="63" count="9" type="stmt"/>
+      <line num="68" count="9" type="stmt"/>
+      <line num="72" count="3" type="stmt"/>
       <line num="76" count="1" type="stmt"/>
     </file>
     <file name="option_validate.js" path="/home/laboratoria/LIM014-mdlinks/option_validate.js">
-      <metrics statements="5" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="2"/>
+      <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="2"/>
       <line num="1" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
-      <line num="5" count="0" type="stmt"/>
-      <line num="12" count="0" type="stmt"/>
-      <line num="24" count="1" type="stmt"/>
+      <line num="5" count="2" type="stmt"/>
+      <line num="6" count="0" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
+      <line num="20" count="2" type="stmt"/>
+      <line num="27" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>

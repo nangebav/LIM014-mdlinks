@@ -128,6 +128,7 @@ describe('links', () => {
     '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
     '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/directorio dentro de otro directorio/3.md',
   ];
+  const c = ['/home/laboratoria/LIM014-mdlinks/reglas de expresiones regulares.md'];
   const abLinks = [
     {
       href: 'https://nodejs.org/es/about/',
@@ -150,6 +151,13 @@ describe('links', () => {
       file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
     },
   ];
+  const cLink = [
+    {
+      href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions',
+      text: 'Not defined',
+      file: '/home/laboratoria/LIM014-mdlinks/reglas de expresiones regulares.md',
+    },
+  ];
 
   it('debería mostrame los valores de todos los links que estan en el archivo md', () => {
     expect(links(a)).toEqual(abLinks);
@@ -157,31 +165,65 @@ describe('links', () => {
   it('debería mostrame solo los valores de todos los links que estan en el archivo md', () => {
     expect(links(b)).toEqual(abLinks);
   });
+  it('debería mostrame los valores del link, pero el text debería decir not defined ', () => {
+    expect(links(c)).toEqual(cLink);
+  });
 });
 
+const a = [
+  {
+    href: 'https://www.genbeta/web_',
+    text: '02.1.4 Genbeta Web site',
+    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+  },
+];
+const aV = [
+  {
+    href: 'https://www.genbeta/web_',
+    text: '02.1.4 Genbeta Web site',
+    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+    status: 404,
+    message: 'FAIL',
+  },
+];
+const b = [
+  {
+    href: 'https://nodejs.org/es/about/',
+    text: '02.1.1 Acerca de Node.js - Documentación oficial',
+    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+  },
+];
+const bV = [
+  {
+    href: 'https://nodejs.org/es/about/',
+    text: '02.1.1 Acerca de Node.js - Documentación oficial',
+    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+    status: 200,
+    message: 'OK',
+  },
+];
 // Función para leer directorio:
 describe('optionValidate', () => {
-  const directoryLinks = [
-    {
-      href: 'https://nodejs.org/es/about/',
-      text: '02.1.1 Acerca de Node.js - Documentación oficial',
-      file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-      status: 200,
-      message: 'OK',
-    },
-  ];
-  const array = [
-    {
-      href: 'https://nodejs.org/es/about/',
-      text: '02.1.1 Acerca de Node.js - Documentación oficial',
-      file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-    },
-  ];
-  it('debería ser una Undifinide', () => {
-    expect(typeof optionsValidate).toBe('undefined');
+  test('debería ser una función', () => {
+    expect(typeof optionValidate).toBe('function');
   });
+  test('should not pass', () => {
+    const p = Promise.resolve(false);
 
-  it('debería retornar array validate ', () => {
-    expect(optionValidate(array)).toEqual(directoryLinks);
+    p.then((value) => {
+      expect(value).toBe(true);
+    });
+  });
+  test('debería retornar array validate con estatus fail', () => {
+    optionValidate(a)
+      .then((data) => {
+        expect(data).toEqual(aV);
+      });
+  });
+  test('debería retornar array validate con status ok', () => {
+    optionValidate(b)
+      .then((data) => {
+        expect(data).toEqual(bV);
+      });
   });
 });
