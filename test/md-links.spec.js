@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const { mdLinks } = require('../md-links');
+const axios = require('../__Mocks__/axios.js');
 
 const path = '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md';
 

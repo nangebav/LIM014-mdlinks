@@ -18,12 +18,16 @@
   },
   "author": "nangebav",
   "license": "MIT",
+  "bin": {
+    "md-links": "/home/laboratoria/LIM014-mdlinks/cli.js"
+  },
   "bugs": {
     "url": "https://github.com/nangebav/LIM014-mdlinks/issues"
   },
   "homepage": "https://github.com/nangebav/LIM014-mdlinks#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "chalk": "^4.1.0",
     "commander": "^7.2.0",
     "editorconfig": "^0.15.3",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -31,7 +35,8 @@
     "express": "^4.17.1",
     "markdown-it": "^12.0.4",
     "marked": "^2.0.1",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "table": "^6.3.2"
   },
   "devDependencies": {
     "eslint": "^7.22.0",

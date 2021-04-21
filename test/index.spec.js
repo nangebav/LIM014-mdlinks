@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+const axios = require('../__Mocks__/axios.js');
 const {
   pathExists,
   validateAbsolute,
@@ -214,16 +215,18 @@ describe('optionValidate', () => {
       expect(value).toBe(true);
     });
   });
-  test('debería retornar array validate con estatus fail', () => {
+  test('debería retornar array validate con estatus fail', (done) => {
     optionValidate(a)
       .then((data) => {
         expect(data).toEqual(aV);
+        done();
       });
   });
-  test('debería retornar array validate con status ok', () => {
+  test('debería retornar array validate con status ok', (done) => {
     optionValidate(b)
       .then((data) => {
         expect(data).toEqual(bV);
+        done();
       });
   });
 });
