@@ -10,7 +10,6 @@ const pathExists = (route) => fs.existsSync(route);
 
 // Validar ruta si es absoluta, de lo contrario convertirla en absoluta
 const validateAbsolute = (route) => ((path.isAbsolute(route)) ? route : path.resolve(route));
-
 // Verificar si es un directorio.
 const validateDirectory = (route) => fs.statSync(route).isDirectory();
 

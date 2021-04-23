@@ -17,10 +17,10 @@
     "url": "git+https://github.com/nangebav/LIM014-mdlinks.git"
   },
   "author": "nangebav",
-  "license": "MIT",
   "bin": {
-    "md-links": "/home/laboratoria/LIM014-mdlinks/cli.js"
+    "md-links": "./Cli/cli.js"
   },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/nangebav/LIM014-mdlinks/issues"
   },

@@ -1,39 +1,37 @@
 /* eslint-disable no-undef */
+const axios = require('axios');
 const { mdLinks } = require('../md-links');
-const axios = require('../__Mocks__/axios.js');
+
+jest.mock('axios');
 
 const path = '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md';
 
-const a = [
+const status200 = [
   {
     href: 'https://nodejs.org/es/about/',
     text: '02.1.1 Acerca de Node.js - Documentación oficial',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-    status: 200,
+    file: '/home/laboratoria/Desktop/link de prueba/1.md',
     message: 'OK',
-  },
-  {
-    href: 'https://nodejs.org/api/fs.html',
-    text: '02.1.2 Node.js file system - Documentación oficial',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
     status: 200,
-    message: 'OK',
-  },
-  {
-    href: 'https://www.w3schools.com/nodejs_/nodejs_intr',
-    text: '02.1.3 Node.js Introduction III',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-    status: 404,
-    message: 'FAIL',
-  },
-  {
-    href: 'https://www.genbeta/web_',
-    text: '02.1.4 Genbeta Web site',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-    status: 404,
-    message: 'FAIL',
   },
 ];
+const axiosResolve = {
+  status: 200,
+  statusText: 'OK',
+};
+const status404 = [
+  {
+    href: 'https://nodejs.org/es/about/',
+    text: '02.1.1 Acerca de Node.js - Documentación oficial',
+    file: '/home/laboratoria/Desktop/link de prueba/1.md',
+    message: 'FAIL',
+    status: 404,
+  },
+];
+const axiosResolveF = {
+  status: 404,
+  statusText: 'FAIL',
+};
 
 const b = [
   {
@@ -55,65 +53,6 @@ const b = [
     href: 'https://www.genbeta/web_',
     text: '02.1.4 Genbeta Web site',
     file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-  },
-];
-
-const c = [
-  {
-    href: 'https://nodejs.org/es/about/',
-    text: '02.1.1 Acerca de Node.js - Documentación oficial',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-    status: 200,
-    message: 'OK',
-  },
-  {
-    href: 'https://nodejs.org/api/fs.html',
-    text: '02.1.2 Node.js file system - Documentación oficial',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-    status: 200,
-    message: 'OK',
-  },
-  {
-    href: 'https://www.w3schools.com/nodejs_/nodejs_intr',
-    text: '02.1.3 Node.js Introduction III',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-    status: 404,
-    message: 'FAIL',
-  },
-  {
-    href: 'https://www.genbeta/web_',
-    text: '02.1.4 Genbeta Web site',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-    status: 404,
-    message: 'FAIL',
-  },
-  {
-    href: 'https://nodejs.org/es/about/',
-    text: '02.2.1 Acerca de Node.js - Documentación oficial',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/2.md',
-    status: 200,
-    message: 'OK',
-  },
-  {
-    href: 'https://nodejs.org/api/fs.html',
-    text: '02.2.2 Node.js file system - Documentación oficial',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/2.md',
-    status: 200,
-    message: 'OK',
-  },
-  {
-    href: 'https://gonzalonavarro.es/blog/error-500/',
-    text: '02.2.3 Gonzalonavarro Web',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/2.md',
-    status: 200,
-    message: 'OK',
-  },
-  {
-    href: 'https://www.reddit.com/r/Ai/broken_link_error_code_500_when_you_reply_to_a/',
-    text: '02.2.4 airbnb',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/2.md',
-    status: 404,
-    message: 'FAIL',
   },
 ];
 
@@ -161,35 +100,49 @@ const d = [
 ];
 
 describe('mdLinks', () => {
-  it('Debería recibir ruta absoluta de archivo o directorio y retornar array de tres propiedades', () => {
-    expect(mdLinks(path, { validate: false }).then((values) => (values).toEqual(b)));
+  it('es una función', () => { expect(typeof mdLinks).toBe('function'); });
+
+  it('Debería recibir ruta absoluta de archivo o directorio y retornar array de tres propiedades', () => expect(mdLinks(path, { validate: false })).resolves.toEqual(b));
+
+  it('Debería recibir ruta absoluta de archivo o directorio y retornar array de tres propiedades', () => expect(mdLinks('links_de_prueba_test/prueba_mdlinks_2')).resolves.toEqual(d));
+
+  test('Debería recibir ruta absoluta de directorio y retornar array de cinco propiedades con status ok', () => {
+    axios.get.mockResolvedValue(axiosResolve);
+    return mdLinks('/home/laboratoria/Desktop/link de prueba', { validate: true }).then((data) => {
+      expect(data).toEqual(status200);
+    });
   });
 
-  it('Debería recibir ruta absoluta de archivo o directorio y retornar array de cinco propiedades', () => {
-    expect(mdLinks(path, { validate: true }).then((values) => (values).toEqual(a)));
+  test('Debería recibir ruta absoluta de directorio y retornar array de cinco propiedades con status fail', () => {
+    axios.get.mockResolvedValue(axiosResolveF);
+    return mdLinks('/home/laboratoria/Desktop/link de prueba', { validate: true }).then((data) => {
+      expect(data).toEqual(status404);
+    });
   });
 
-  it('Debería recibir ruta absoluta de archivo o directorio y retornar array de cinco propiedades', () => {
-    expect(mdLinks('links_de_prueba_test/prueba_mdlinks_2', { validate: true }).then((values) => (values).toEqual(c)));
-  });
-
-  it('Debería recibir ruta absoluta de archivo o directorio y retornar array de cinco propiedades', () => {
-    expect(mdLinks('links_de_prueba_test/prueba_mdlinks_2').then((values) => (values).toEqual(d)));
-  });
-
-  it('Debería detenerse si la ruta no existe', () => {
-    expect(mdLinks('links_de_prueba_test/prueba_mdlinks_3').then((values) => (values).toBe('No Existe la ruta')));
+  test('Debería recibir ruta absoluta de un archivo y retornar array de cinco propiedades con status fail', () => {
+    axios.get.mockResolvedValue(axiosResolveF);
+    return mdLinks('/home/laboratoria/Desktop/link de prueba/1.md', { validate: true }).then((data) => {
+      expect(data).toEqual(status404);
+    });
   });
 
   it('Debería detenerse si no es un archivo md', () => {
-    expect(mdLinks('links_de_prueba_test/prueba_mdlinks_2/no_mdlink.js').then((values) => (values).toBe('No es un archivo marckdown (.md)')));
+    mdLinks('links_de_prueba_test/prueba_mdlinks_2/no_mdlink.js')
+      .catch((values) => expect(values).toBe('No es un archivo marckdown (.md)'));
   });
 
   it('Debería leer un un archivo md sin links', () => {
-    expect(mdLinks('links_de_prueba_test/prueba_mdlinks_2/directorio dentro de otro directorio/3.md').then((values) => (values).toBe('No hay Links')));
+    mdLinks('links_de_prueba_test/prueba_mdlinks_2/directorio dentro de otro directorio/3.md')
+      .catch((values) => expect(values).toBe('No hay Links'));
   });
 
   it('Debería leer un directorio con un archivo md sin links', () => {
-    expect(mdLinks('links_de_prueba_test/prueba_mdlinks_2/directorio dentro de otro directorio').then((values) => (values).toBe('No hay Links')));
+    mdLinks('links_de_prueba_test/prueba_mdlinks_2/directorio dentro de otro directorio')
+      .catch((values) => expect(values).toBe('No hay Links'));
+  });
+  it('Debería detenerse si el directorio no existe', () => {
+    mdLinks('links_de_pruebas_test/prueba_mdlinks_2/directorio dentro de otros directorio')
+      .catch((values) => expect(values).toBe('No Existe la ruta'));
   });
 });

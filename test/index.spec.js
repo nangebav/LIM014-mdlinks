@@ -1,5 +1,8 @@
 /* eslint-disable no-undef */
-const axios = require('../__Mocks__/axios.js');
+const axios = require('axios');
+
+jest.mock('axios');
+
 const {
   pathExists,
   validateAbsolute,
@@ -170,63 +173,97 @@ describe('links', () => {
     expect(links(c)).toEqual(cLink);
   });
 });
-
-const a = [
-  {
-    href: 'https://www.genbeta/web_',
-    text: '02.1.4 Genbeta Web site',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-  },
-];
-const aV = [
-  {
-    href: 'https://www.genbeta/web_',
-    text: '02.1.4 Genbeta Web site',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-    status: 404,
-    message: 'FAIL',
-  },
-];
-const b = [
-  {
-    href: 'https://nodejs.org/es/about/',
-    text: '02.1.1 Acerca de Node.js - Documentación oficial',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-  },
-];
-const bV = [
-  {
-    href: 'https://nodejs.org/es/about/',
-    text: '02.1.1 Acerca de Node.js - Documentación oficial',
-    file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
-    status: 200,
-    message: 'OK',
-  },
-];
+// TEST PARA EVALUAR ESTADOS DE CADA LINK
 // Función para leer directorio:
 describe('optionValidate', () => {
   test('debería ser una función', () => {
     expect(typeof optionValidate).toBe('function');
   });
-  test('should not pass', () => {
-    const p = Promise.resolve(false);
 
-    p.then((value) => {
-      expect(value).toBe(true);
+  it('Debería devolver un objeto con mensaje ok', () => {
+    const a = [
+      {
+        href: 'https://nodejs.org/es/about/',
+        text: '02.1.1 Acerca de Node.js - Documentación oficial',
+        file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+      },
+    ];
+    const aStatus200 = [
+      {
+        href: 'https://nodejs.org/es/about/',
+        text: '02.1.1 Acerca de Node.js - Documentación oficial',
+        file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+        status: 200,
+        message: 'OK',
+      },
+    ];
+    const axiosResolve = {
+      status: 200,
+      statusText: 'OK',
+    };
+    axios.get.mockResolvedValue(axiosResolve);
+    return optionValidate(a).then((values) => { expect(values).toEqual(aStatus200); });
+  });
+});
+
+// Demostrar la validación fail de links
+describe('Validación de links', () => {
+  it('Debería ser una función', () => {
+    expect(typeof optionValidate).toBe('function');
+  });
+  it('Debería devolver un array con status fail', () => {
+    const b = [
+      {
+        href: 'https://www.genbeta/web_',
+        text: '02.1.4 Genbeta Web site',
+        file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+      },
+    ];
+    const bStatus404 = [
+      {
+        href: 'https://www.genbeta/web_',
+        text: '02.1.4 Genbeta Web site',
+        file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+        status: 404,
+        message: 'FAIL',
+      },
+    ];
+    const axiosResolve2 = {
+      status: 404,
+      statusText: 'Fail',
+    };
+
+    axios.get.mockRejectedValue(axiosResolve2);
+    return optionValidate(b).then((data) => {
+      expect(data).toEqual(bStatus404);
     });
   });
-  test('debería retornar array validate con estatus fail', (done) => {
-    optionValidate(a)
-      .then((data) => {
-        expect(data).toEqual(aV);
-        done();
-      });
-  });
-  test('debería retornar array validate con status ok', (done) => {
-    optionValidate(b)
-      .then((data) => {
-        expect(data).toEqual(bV);
-        done();
-      });
+
+  it('Debería devolver un array con status fail', () => {
+    const b = [
+      {
+        href: 'https://www.genbeta/web_',
+        text: '02.1.4 Genbeta Web site',
+        file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+      },
+    ];
+    const bStatus404 = [
+      {
+        href: 'https://www.genbeta/web_',
+        text: '02.1.4 Genbeta Web site',
+        file: '/home/laboratoria/LIM014-mdlinks/links_de_prueba_test/prueba_mdlinks_2/1.md',
+        status: 404,
+        message: 'FAIL',
+      },
+    ];
+    const axiosResolve3 = {
+      status: undefined,
+      statusText: 'Fail',
+    };
+
+    axios.get.mockRejectedValue(axiosResolve3);
+    return optionValidate(b).then((data) => {
+      expect(data).toEqual(bStatus404);
+    });
   });
 });

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable prefer-promise-reject-errors */
 const {
   pathExists,
@@ -30,7 +31,7 @@ const mdLinks = (pathFile, option) => new Promise((resolve, reject) => {
       } else {
         reject('No hay Links');
       }
-    } else if (validateFile(absolutePath) === true) {
+    } if (validateFile(absolutePath) === true) {
       if (fileMd(absolutePath) === true) {
         const mdArchivo = [absolutePath];
         const fileLinks = links(mdArchivo);
@@ -56,7 +57,7 @@ module.exports = {
   mdLinks,
 };
 
-// mdLinks('links_de_prueba_test/prueba_mdlinks_2', { validate: true })
+// mdLinks('/home/laboratoria/Desktop/link de prueba', { validate: true })
 //  .then((values) => {
 //    console.log(values);
 //  });
