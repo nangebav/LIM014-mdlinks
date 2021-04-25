@@ -9,18 +9,18 @@
   "scripts": {
     "test": "jest --verbose --coverage",
     "eslint": "eslint --ext .js src/ test/",
-    "start": "node ./src/index.js",
-    "startN": "nodemon ./src/index.js"
+    "start": "node md-links.js",
+    "startN": "nodemon index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nangebav/LIM014-mdlinks.git"
   },
   "author": "nangebav",
+  "license": "ISC",
   "bin": {
-    "md-links": "./Cli/cli.js"
+    "md-links": "/home/laboratoria/LIM014-mdlinks/Cli/cli.js"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/nangebav/LIM014-mdlinks/issues"
   },
