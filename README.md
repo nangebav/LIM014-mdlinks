@@ -12,7 +12,7 @@ Estos archivos Markdown normalmente contienen links (vínculos/ligas) que muchas
 
 Crear una herramienta usando Node.js, que lea y analice archivos en formato Markdown, para verificar los links que contengan y reportar algunas estadísticas.
 
-### `Logo de Md-links014`
+### `Logo de md-links`
 
 ![logo](https://user-images.githubusercontent.com/77282012/116272728-c20b4580-a746-11eb-9ab5-2d0b7de898c6.jpg)
 
