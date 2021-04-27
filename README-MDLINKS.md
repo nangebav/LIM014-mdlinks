@@ -28,6 +28,7 @@ Crear una herramienta usando Node.js, que lea y analice archivos en formato Mark
 
 ### Logo de Md-links014
 
+![logo](https://user-images.githubusercontent.com/77282012/116272728-c20b4580-a746-11eb-9ab5-2d0b7de898c6.jpg)
 
 ## 1. Diagramas de Flujo
 
@@ -39,6 +40,12 @@ Crear una herramienta usando Node.js, que lea y analice archivos en formato Mark
 
 ![Copia de Diagrama en blanco](https://user-images.githubusercontent.com/77282012/112901824-e114aa00-90aa-11eb-85f0-4748f8d01e69.jpeg)
 
+
+![help](https://user-images.githubusercontent.com/77282012/116272718-c0da1880-a746-11eb-87c5-26cc6cad54ce.jpg)
+
+![not option](https://user-images.githubusercontent.com/77282012/116272730-c2a3dc00-a746-11eb-89bc-0e5892d5bf53.jpg)
+![stats](https://user-images.githubusercontent.com/77282012/116272731-c2a3dc00-a746-11eb-93fa-88728a800dcf.jpg)
+![validate](https://user-images.githubusercontent.com/77282012/116272732-c33c7280-a746-11eb-8d96-a573120d2cef.jpg)
 
 ### JavaScript
 

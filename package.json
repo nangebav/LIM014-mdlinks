@@ -17,9 +17,9 @@
     "url": "git+https://github.com/nangebav/LIM014-mdlinks.git"
   },
   "author": "nangebav",
-  "license": "ISC",
+  "license": "MIT",
   "bin": {
-    "md-links": "/home/laboratoria/LIM014-mdlinks/Cli/cli.js"
+    "md-links": "cli/index.js"
   },
   "bugs": {
     "url": "https://github.com/nangebav/LIM014-mdlinks/issues"

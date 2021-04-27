@@ -1,8 +1,8 @@
 #!/usr/bin/env node
+
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
 const { program } = require('commander');
-// const { table } = require('table');
 const { mdLinks } = require('../md-links.js');
 
 const { logo, help, color } = require('./Ascii_Images.js');
