@@ -114,28 +114,6 @@ Por ejemplo:
 ![help](https://user-images.githubusercontent.com/77282012/116272718-c0da1880-a746-11eb-87c5-26cc6cad54ce.jpg)
 
 
-# Ejecutable
-
-El módulo puede importarse en otros scripts de Node.js a travéz de:
-
-```sh
-require('mdLinks')
-
-mdLinks('/home/laboratoria/Desktop/link de prueba')
-  .then((values) => {
-    console.log(values); // Devolvería un array con objetos por cada link
-  });
-
-mdLinks('/home/laboratoria/Desktop/link de prueba', { validate: true })
-  .then((values) => {
-    console.log(values); // Devolvería un array con objetos por cada link con su estatus
-  });
-
-```
-
-***
-
-
 ### JavaScript
 
 * [x] Uso de condicionales (if-else | switch | operador ternario)
