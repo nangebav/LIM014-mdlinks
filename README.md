@@ -1,14 +1,14 @@
 # Markdown Links
 
-## `Preámbulo`
+## Preámbulo
 
 Markdown es un lenguaje de marcado ligero muy popular entre developers. Es usado en muchísimas plataformas que manejan texto plano (GitHub, foros, blogs, ...), y es muy común encontrar varios archivos en ese formato en cualquier tipo de repositorio (empezando por el tradicional README).
 
-## `Planteamiento del problema`
+## Planteamiento del problema
 
 Estos archivos Markdown normalmente contienen links (vínculos/ligas) que muchas veces están rotos o ya no son válidos y eso perjudica mucho el valor de la información que se quiere compartir.
 
-## `Resumen del proyecto`
+## Resumen del proyecto
 
 Crear una herramienta usando Node.js, que lea y analice archivos en formato Markdown, para verificar los links que contengan y reportar algunas estadísticas.
 
