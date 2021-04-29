@@ -25,7 +25,8 @@ Crear una herramienta usando Node.js, que lea y analice archivos en formato Mark
 
     FeedBacks:
         - "El diagrama no cuenta con la lectura de archivos al ingresar las rutas"
-        - "En la condición de que si no es una ruta abasoluta y debería convertirse en una, es redundante volver a preguntar si lo es, lo más recomendable es               que es hacer la busqueda de directorios y archivos en ese momento"
+        - "En la condición de que si no es una ruta abasoluta y debería convertirse en una, es redundante volver a preguntar si lo es, lo más recomendable es            
+        que es hacer la busqueda de directorios y archivos en ese momento"
         - "Agregar la lectura de archivos"
 
   ### Diagrama de flujo API FINAL
