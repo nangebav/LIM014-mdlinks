@@ -124,6 +124,12 @@ Por ejemplo:
 
 ![help](https://user-images.githubusercontent.com/77282012/116272718-c0da1880-a746-11eb-87c5-26cc6cad54ce.jpg)
 
+## Próximas Mejoras
+
+    Que la librería entregue estadisticas más completas en el comando de validate
+    Tal vez que los links estén ordenados según si están ok o fail
+
+
 
 ### JavaScript
 
