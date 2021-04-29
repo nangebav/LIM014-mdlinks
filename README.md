@@ -17,12 +17,22 @@ Crear una herramienta usando Node.js, que lea y analice archivos en formato Mark
 ![logo](https://user-images.githubusercontent.com/77282012/116272728-c20b4580-a746-11eb-9ab5-2d0b7de898c6.jpg)
 
 ## 1. Diagramas de Flujo
-    
-  ### Diagrama de flujo API
+  ## Primer prototipo de diagrama de flujo API 
+  
+  ![Diagrama en blanco](https://user-images.githubusercontent.com/77282012/116499870-cf255300-a872-11eb-8d1c-768c20579279.jpeg)
+  
+  A base de este primer prototipo se recibió los siguientes feedbacks y recomendaciones para la mejora del diagrama
+
+    FeedBacks:
+        - "El diagrama no cuenta con la lectura de archivos al ingresar las rutas"
+        - "En la condición de que si no es una ruta abasoluta y debería convertirse en una, es redundante volver a preguntar si lo es, lo más recomendable es               que es hacer la busqueda de directorios y archivos en ese momento"
+        - "Agregar la lectura de archivos"
+
+  ### Diagrama de flujo API FINAL
 
   ![Copia de Diagrama eAPI](https://user-images.githubusercontent.com/77282012/112901887-f38ee380-90aa-11eb-90b6-d0a6661ad6b8.jpeg)
 
-  ### Diagrama de flujo CLI
+  ### Diagrama de flujo CLI FINAL
 
   ![Copia de Diagrama en blanco](https://user-images.githubusercontent.com/77282012/112901824-e114aa00-90aa-11eb-85f0-4748f8d01e69.jpeg)
 
